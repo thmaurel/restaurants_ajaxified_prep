@@ -10,13 +10,14 @@
     <% else %>
       <% @restaurant.reviews.each do |review| %>
         <div class="review" id="review-<%= review.id %>">
-          <p><%= review.content %></p>
+          <p><%= review.rating %>/5 : <%= review.content %></p>
         </div>
       <% end %>
     <% end %>
   </div>
 
   <%= simple_form_for([ @restaurant, @review ], remote: true) do |f| %>
+    <%= f.input :rating, collection: (1..5).to_a %>
     <%= f.input :content %>
     <%= f.button :submit %>
   <% end %>
