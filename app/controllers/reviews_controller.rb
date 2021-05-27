@@ -6,6 +6,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to restaurant_path(@restaurant, anchor: "review-#{@review.id}")
     else
+      flash[:alert] = "Something went wrong."
       render 'restaurants/show'
     end
   end
